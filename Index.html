@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html ng-app="app" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+    <!--STYLES-->
+    <link href="assets/css/jquery-ui.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/custom.css" rel="stylesheet" />
+    <link href="assets/css/angular-block-ui.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/uk.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="assets/css/angular-material.min.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap-table.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap-table-filter-control.css" rel="stylesheet" />
+    <link href="assets/css/jquery.autocomplete.css" rel="stylesheet" />
+
+    <!--SHARED LIBS-->
+    <!--Basic usage-->
+    <script src="app/shared/libs/angular.js"></script>
+    <script src="app/shared/libs/jquery.min.js"></script>
+    <script src="app/shared/libs/bootstrap.min.js"></script>
+    <script src="app/shared/libs/ngStorage.min.js"></script>
+    <script src="app/shared/libs/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <!-- <script src="app/configuration/require.js"></script> -->
+    <!--Angular extensions-->
+    <script src="app/shared/libs/angular-ui-router.min.js"></script>
+    <script src="app/shared/libs/angular-cache.js"></script>
+    <script src="app/shared/libs/angular-cookies.min.js"></script>
+    <script src="app/shared/libs/angular-messages.min.js"></script>
+    <script src="app/shared/libs/angular-route.js"></script>
+    <script src="app/shared/libs/angular-resource.min.js"></script>
+    <!--Socket.IO-->
+    <!--Archivos necesarios para la utilización de socket io client-->
+    <script src="app/shared/libs/socket.io.js"></script>
+    <script src="app/shared/libs/socket.io.slim.js"></script>
+    <!--Block UI (request loading message)-->
+    <script src="app/shared/libs/angular-block-ui.js"></script>
+    <!--Authentication service-->
+    <script src="app/shared/services/authService.js"></script>
+    <!--Angular material-->
+    <script src="app/shared/libs/angular-aria.min.js"></script>
+    <script src="app/shared/libs/angular-animate.min.js"></script>
+    <script src="app/shared/libs/angular-material.min.js"></script>
+    <!--Export libs-->
+    <script src="app/shared/libs/html2canvas.js"></script>
+    <script src="app/shared/libs/fileSaver.js"></script>
+    <script src="app/shared/libs/sprintf.js"></script>
+    <script src="app/shared/libs/jspdf.js"></script>
+    <script src="app/shared/libs/jspdf.plugin.autotable.js"></script>
+    <script src="app/shared/libs/base64.js"></script>
+    <!--Bootstrap-table-->
+    <script src="app/shared/libs/bootstrap-table.js"></script>
+    <script src="app/shared/libs/bootstrap-table-export.js"></script>
+    <script src="app/shared/libs/bootstrap-table-filter-control.js"></script>
+    <script src="app/shared/libs/tableExport.js"></script>
+    <script src="app/shared/libs/bootstrap-table-angular.js"></script>
+    <!--Autocomplete inputs-->
+    <script src="app/shared/libs/jquery.autocomplete.js"></script>
+    <!--Fusion charts-->
+    <script src="app/shared/libs/fusioncharts.js"></script>
+    <script src="app/shared/libs/fusioncharts.charts.js"></script>
+    <!--Socket connection-->
+    <script src="app/configuration/socketConnection.js"></script>
+    <!--Kendo-->    
+    <script src="app/shared/libs/kendo.all.min.js"></script>
+
+    <!--JAVASCRIPTS-->
+    <!--<script src="app/main.js"></script>-->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
+    <script src="app/app.routes.js"></script>
+
+    <!--DIRECTIVES-->
+    <script src="app/shared/directives/permissionDirective.js"></script>
+
+    <!--SERVICES-->
+    <script src="app/shared/services/utillityService.js"></script>
+    <script src="app/shared/services/httpInterceptor.js"></script>
+    <script src="app/shared/services/httpRequestInterceptor.js"></script>
+    <script src="app/shared/services/webSocketService.js"></script>
+    <script src="app/shared/services/notificationService.js"></script>
+    <script src="app/shared/services/workflowService.js"></script>
+    <script src="app/shared/services/filemanagerService.js"></script>
+
+    <!--CONTROLLERS-->
+    <script src="app/components/login/loginController.js"></script>
+    <script src="app/components/home/homeController.js"></script>
+    <script src="app/components/main/headerController.js"></script>
+    <script src="app/components/main/footerController.js"></script>
+    <script src="app/components/main/mainController.js"></script>
+    <script src="app/components/modal/ModalInstanceCtrl.js"></script>
+    <script src="app/components/main/modal/messageController.js"></script>
+    <!--Inscripciones-->
+    <script src="app/components/user/userProfileController.js"></script>
+    <script src="app/components/inscripciones/matriculacionYArancelamiento.js"></script>
+    <script src="app/components/inscripciones/consultaDeDerechosDeExamen.js"></script>
+    <script src="app/components/inscripciones/consultaDeInscripcionAExamenes.js"></script>
+    <script src="app/components/inscripciones/consultaDeInscripcionAMaterias.js"></script>
+    <script src="app/components/inscripciones/consultaDeMatriculaciones.js"></script>
+    <script src="app/components/inscripciones/inscripcionAExamenes.js"></script>
+    <script src="app/components/inscripciones/inscripcionAMaterias.js"></script>
+    <!--Programación académica-->
+    <script src="app/components/programacionAcademica/crearCursoAisladoController.js"></script>
+    <script src="app/components/programacionAcademica/crearCursoDesdeCarreraController.js"></script>
+    <script src="app/components/programacionAcademica/crearCursoDesdeCursoController.js"></script>
+    <!--Indicadores de permanencia-->
+    <script src="app/components/indicadoresDePermanencia/indicadoresDePermanenciaController.js"></script>
+    <!--Gestión de trámites-->
+    <script src="app/components/gestionDeTramites/bandejaDeTramitesController.js"></script>
+    <script src="app/components/gestionDeTramites/consultaTramitesController.js"></script>
+    <script src="app/components/gestionDeTramites/gestionarUnTramiteController.js"></script>
+    <script src="app/components/gestionDeTramites/confirmacionDatosPersonalesController.js"></script>
+    <script src="app/components/gestionDeTramites/tramiteAnaliticoFinalController.js"></script>
+    <script src="app/components/gestionDeTramites/documentacionLibretaUniversitariaController.js"></script>
+    <script src="app/components/gestionDeTramites/planEstudioController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/programasLegalizadosEstadoAdministrativoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/programasLegalizadosEstadoAcademicoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/programasLegalizadosConfirmacionDatosPersonalesController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/duplicadoAnaliticoEstadoAdministrativoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/duplicadoAnaliticoConfirmacionDatosPersonalesController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/tituloTramiteEstadoAdministrativoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalConfirmacionDatosPersonalesController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalEstadoAcademicoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalEstadoAdministrativoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoParcialConfirmacionDatosPersonalesController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoParcialEstadoAdministrativoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/libretaUniversitariaDocumentacionController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/rectificacionDatosConfirmacionDatosPersonalesController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/rectificacionDatosEstadoAcademicoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/planEstudioConfirmacionDatosPersonalesController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/porcentajesMateriasConfirmacionDatosPersonalesController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/porcentajesMateriasEstadoAcademicoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/porcentajesMateriasEstadoAdministrativoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/programasLegalizadosDigitalizadoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalControlDatosController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/reasignarTareaController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/pagarOnlineController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/previewTramiteController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalConfeccionaAnexoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalCorregirBorradorController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalCorregirReconoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalCorregirSolicitudController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalDiplomaColacionController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalReimprimeController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoFinalTramiteObservadoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoParcialConfeccionaAnexoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoParcialCorregirBorradorController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoParcialCorregirReconoController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/analiticoParcialCorregirSolicitudController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/duplicadoAnaliticoCorregirBorradorController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/duplicadoAnaliticoCorregirSolicitudController.js"></script>
+    <script src="app/components/gestionDeTramites/modal/estadoInstanciaObservacionesController.js"></script>
+    <script src="app/components/gestionDeTramites/printTemplates/estadoAcademicoController.js"></script>
+    <!-- UTILIDADES -->
+    <script src="app/components/utilidades/informeEstadoAcademicoController.js"></script>
+
+    <script src="app/components/gestionDeTramites/modal/testModal_1Controller.js"></script>
+    <script src="app/components/gestionDeTramites/modal/testModal_2Controller.js"></script>
+    <script src="app/components/gestionDeTramites/modal/testModal_3Controller.js"></script>
+    <script src="app/components/gestionDeTramites/modal/testModal_4Controller.js"></script>
+</head>
+<body>
+    <!-- VALOR NECESARIO PARA QUE app.routes.js RELACIONE LAS VISTAS -->
+    <ng-view></ng-view>
+
+</body>
+</html>

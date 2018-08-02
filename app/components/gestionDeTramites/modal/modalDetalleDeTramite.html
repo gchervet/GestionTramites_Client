@@ -1,0 +1,21 @@
+<div class="modal-header">
+        <h3 class="modal-title">Detalle de trámite {{selectedTramite.NroTramite}}</h3>
+</div>
+<div class="modal-body">
+
+    <label style="font-weight: bold">Nombre:</label> {{selectedTramite.Nombre}}<br>
+    <label style="font-weight: bold">Legajo:</label> {{selectedTramite.IdentificadorInteresado}}<br>
+    <!--<label style="font-weight: bold">Carrera:</label> {{selectedTramite.Carrera}}<br>-->
+    <label style="font-weight: bold">Trámite Nro:</label> {{selectedTramite.IdInstanciaTramite}}<br>
+    <label style="font-weight: bold">Descripción:</label> {{selectedTramite.Descripcion}}<br>
+    <label style="font-weight: bold">Fecha Comienzo:</label> {{selectedTramite.FechaComienzo}}<br>
+    <label style="font-weight: bold">Estado:</label> {{selectedTramite.NombreEstadoParaAlumno}}<br>
+    <label style="font-weight: bold">Observaciones:</label> {{selectedTramite.Observaciones}}<br>
+    <br>
+        
+    <label style="color: green; font-weight: 400;">Para hacer el seguimiento del trámite, comunicarse al 0800XXXXXXX, vía email a admin@kennedy.edu.ar o personalmente a AIA</label>
+    
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+</div>

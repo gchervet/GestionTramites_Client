@@ -1,0 +1,174 @@
+﻿/* CUSTOM CLASSES */
+html{
+    overflow-x: hidden;
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.home-icon {
+    float: left;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-image: url(../../assets/img/Logo_keneddy_oficial_min.png);
+    background-repeat: no-repeat;
+    display: block;
+    top: 5px;
+    right: 10px;
+}
+
+.cursor-pointer, .dropdown-menu > li > a, .navbar-inverse .navbar-nav > li > a:hover {
+    cursor: pointer;
+}
+
+.dropdown-menu-custom {
+    color: white;
+    background-color: #333;
+    height: 50px;
+}
+
+.dropdown-selector-custom {
+    
+    padding: 0;
+    border: 1px solid gray;
+    height: 35px;
+    border-radius: 4px;
+}
+
+.dropdown-label{
+    width: 363px;
+    position: relative;
+    display: block;
+    background: white;
+    float: left;
+    border: 1px solid #cccccc;
+    height: 34px;
+    border-radius: 4px;
+    padding-top: 7px;
+    padding-left: 7px;
+}
+.grid {
+  position: relative;
+}
+.item {
+  display: block;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  z-index: 1;
+  background: #000;
+  color: #fff;
+}
+.item.muuri-dragging {
+  z-index: 3;
+}
+.item.muuri-releasing {
+  z-index: 2;
+}
+.item.muuri-hidden {
+  z-index: 0;
+}
+.item-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.md-autocomplete > input{
+    height: 33px;
+}
+
+.form-padding-15{
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.alumno-name-text {
+    color: grey;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 14px;
+    margin-top: 4px;
+}
+
+.paypertic-disclaimer{
+    background-image: url(../img/disclaimer_paypertic.png);
+    height: 67px;
+    background-repeat: no-repeat;
+    display: block;
+    margin-left: 88px;
+}
+
+.modal-observaciones-list-container{
+    height: 400px;
+    background-color: #dadada;
+    border-radius: 5px;
+    padding: 13px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.modal-observaciones-list-item{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+}
+
+.modal-observaciones-list-item .observacion-info{
+    color: grey;
+    font-weight: bold;
+    font-size: 12px;
+    position: relative;
+    height: 17px;
+    display: block;
+}
+
+.modal-observaciones-list-item .observacion-info-mail{
+    color: grey;
+    font-weight: bold;
+    font-size: 12px;    
+    height: 30px;
+}
+
+.modal-observaciones-list-item .observacion-info-mail .observacion-email{
+    float: right;
+    color: #6ac4f1;
+    display: block;
+}
+
+.modal-observaciones-list-item .observacion-info .observacion-fecha{
+    
+    float: left;
+    display: block;
+}
+
+.modal-observaciones-list-item .observacion-info .observacion-usuario{
+    
+    float: right;
+    display: block;
+}
+
+.modal-observaciones-list-item .observacion-info .observacion-email{
+    
+    float: right;
+    display: block;
+}
+
+.modal-observaciones-list-item .observacion-content{
+    padding: 5px;
+}
+
+.modal-observaciones-list-item .observacion-content .observacion-text{
+    font-size: 15px;
+}

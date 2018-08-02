@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Consulta de trámites</title>
+    <div ng-include ng-controller="headerController as header" src="'app/components/main/header.html'"></div>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+
+        <div class="col-md-11 col-centered">
+            <h2>Consulta de trámites</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+
+            <div class="panel panel-info">
+                <div class="panel-heading"></div>
+                <div class="panel-body collapsable">
+                    <div class="row">
+                        <div class="col-md-12 col-centered">
+                            <div id="administracionGrid">
+
+                                <table id="consultaDeTramite_ResultTable" data-search="true" data-striped="true" data-filter-control="true" bs-table-control="bsTableControl">
+                                    <thead>
+                                        <tr>
+                                            <!--<th data-checkbox="false"></th>-->
+                                            <th data-field="NroTramite" data-visible="false" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nro Trámite</th>
+                                            <th data-field="IdInstanciaTramiteActivo" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nro Trámite</th>
+                                            <th data-field="IdentificadorInteresado" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Legajo</th>
+                                            <th data-field="DescripcionTramite" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Descripción trámite</th>
+                                            <th data-field="NombreTarea" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nombre de tarea</th>
+                                            <th data-field="Estado" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Estado</th>
+                                            <th data-field="FechaCreacion" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Fecha Solicitud</th>
+                                            <th data-field="FechaLimite" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Fecha Vencimiento</th>
+                                            <th data-field="Asignado" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Asignado</th>
+                                            <th data-field="Prioridad" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Prioridad</th>
+                                            <th data-field="Observaciones" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Observaciones</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

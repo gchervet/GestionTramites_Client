@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<head>
+    <title>Crear curso</title>
+    <div ng-include ng-controller="headerController as header" src="'app/components/main/header.html'"></div>
+</head>
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Crear un curso</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-heading">General</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-1 form-group">
+                                    <label>Ciclo:</label>
+                                    <select id="comboCiclo" class="input-large form-control" ng-options="ciclo.code as ciclo.name for ciclo in vm.cicloList" ng-model="vm.ciclo"></select>
+                                </div>
+                                <div class="col-md-1 form-group">
+                                    <label>Cuatrimestre:</label>
+                                    <select id="comboCuatrimestre" class="input-large form-control" ng-disabled="!vm.ciclo" ng-options="cuatrimestre.code as cuatrimestre.name for cuatrimestre in vm.cuatrimestreList" ng-model="vm.cuatrimestre"></select>
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Modalidad:</label>
+                                    <select id="comboModalidad" class="input-large form-control" ng-disabled="!vm.cuatrimestre" ng-options="modalidad.code as modalidad.name for modalidad in vm.modalidadList" ng-model="vm.modalidad"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-1 form-group">
+                                    <label>Turno:</label>
+                                    <select class="input-large form-control" id="comboTurno" ng-options="turno.code as turno.name for turno in vm.turnoList" ng-model="vm.turno"></select>
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Cant de profesores:</label>
+                                    <select class="input-large form-control" id="comboCantProfesores" ng-options="cantProfesores.code as cantProfesores.name for cantProfesores in vm.cantProfesoresList" ng-model="vm.cantProfesores"></select>
+                                </div>
+                                <div class="col-md-1 form-group">
+                                    <label>Cupo:</label>
+                                    <select class="input-large form-control" id="comboCupo" ng-options="cupo.code as cupo.name for cupo in vm.cupoList" ng-model="vm.cupo"></select>
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Cant clases:</label>
+                                    <select id="comboCantClases_{{$index}}"
+                                            class="input-large form-control"
+                                            ng-options="cantClases.code as cantClases.name for cantClases in vm.cantClasesList" ng-model="vm.cantClases"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">Planes | Materias</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-4 form-group">
+                                    <label>Plan:</label>
+                                    <md-content class="dropdown-selector-custom">
+                                        <md-autocomplete id="materiaAutocomplete"
+                                                         md-search-text="vm.planSearchText"
+                                                         md-selected-item="vm.selectedPlan"
+                                                         md-selected-item-change="vm.carreraOnChange(plan.code)"
+                                                         md-items="plan in vm.querySearch(vm.planSearchText, vm.planList)"
+                                                         md-item-text="plan.name"
+                                                         md-min-length="0"
+                                                         placeholder="Seleccionar plan"
+                                                         style="height:33px; overflow: hidden;">
+                                            <md-item-template>
+                                                <span md-highlight-text="vm.planSearchText" md-highlight-flags="^i">{{plan.name}}</span>
+                                            </md-item-template>
+                                            <md-not-found>
+                                                No se han encontrado resultados.
+                                            </md-not-found>
+                                        </md-autocomplete>
+                                    </md-content>
+
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <label>Materia:</label>
+                                    <md-content class="dropdown-selector-custom">
+                                        <md-autocomplete md-search-text="vm.materiaSearchText"
+                                                         md-selected-item="vm.selectedMateria"
+                                                         md-selected-item-change="vm.materiaOnChange(plan.code)"
+                                                         md-items="materia in vm.querySearch(vm.materiaSearchText, vm.materiaList)"
+                                                         md-item-text="materia.name"
+                                                         md-min-length="0"
+                                                         placeholder="Seleccionar materia"
+                                                         style="height:33px; overflow: hidden;">
+                                            <md-item-template>
+                                                <span md-highlight-text="vm.materiaSearchText" md-highlight-flags="^i">{{materia.name}}</span>
+                                            </md-item-template>
+                                            <md-not-found>
+                                                No se han encontrado resultados.
+                                            </md-not-found>
+                                        </md-autocomplete>
+                                    </md-content>
+                                </div>
+
+                                <!--OUTPUT MATERIAS-->
+                                <div class="col-md-4 form-group">
+                                    <label>Materias seleccionadas:</label>
+                                    <div class="padded-row">
+                                        <div angucomplete-alt
+                                             id="ex8a"
+                                             placeholder="Search countries"
+                                             pause="100"
+                                             selected-object="countrySelected8a"
+                                             local-data="countries"
+                                             search-fields="name"
+                                             title-field="name"
+                                             minlength="1"
+                                             input-class="form-control form-control-small"
+                                             match-class="highlight"
+                                             field-required="true"
+                                             input-name="country8a">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel-group">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Horarios</div>
+                    <div class="panel-body">
+                        <div ng-repeat="horarioIndex in vm.horarioList track by $index">
+                            <h4>Horario {{$index+1}}</h4>
+                            <div class="row">
+                                <div class="col-md-12 col-centered">
+                                    <div class="col-md-1 form-group">
+                                        <label>Día:</label>
+                                        <select id="comboDia_{{$index}}"
+                                                class="input-large form-control"
+                                                ng-options="dia.code as dia.name for dia in vm.diaList"
+                                                ng-model="vm.horarioList[$index].dia"></select>
+                                    </div>
+                                    <div class="col-md-1 form-group">
+                                        <label>Hora desde:</label>
+                                        <select id="comboHoraDesde_{{$index}}"
+                                                class="input-large form-control"
+                                                ng-options="horaDesde.code as horaDesde.name for horaDesde in vm.horaDesdeList"
+                                                ng-model="vm.horarioList[$index].horaDesde"
+                                                ng-disabled="!vm.horarioList[{{$index}}].dia"></select>
+                                    </div>
+                                    <div class="col-md-1 form-group">
+                                        <label>Horas hasta:</label>
+                                        <select id="comboHoraHasta_{{$index}}"
+                                                class="input-large form-control"
+                                                ng-options="horaHasta.code as horaHasta.name for horaHasta in vm.horaHastaList"
+                                                ng-model="vm.horarioList[$index].horaHasta"
+                                                ng-disabled="!vm.horarioList[{{$index}}].horaDesde"></select>
+                                    </div>
+                                    <div class="col-md-1 form-group">
+                                        <label>Edificio:</label>
+                                        <select id="comboEdificio_{{$index}}"
+                                                class="input-large form-control"
+                                                ng-options="edificio.code as edificio.name for edificio in vm.edificioList"
+                                                ng-model="vm.horarioList[$index].edificio"></select>
+                                    </div>
+                                    <div class="col-md-1 form-group">
+                                        <label>Aula:</label>
+                                        <select id="comboAula_{{$index}}"
+                                                class="input-large form-control"
+                                                ng-options="aula.code as aula.name for aula in vm.aulaList"
+                                                ng-model="vm.horarioList[$index].aula"
+                                                ng-disabled="!vm.horarioList[{{$index}}].dia"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" ng-click="vm.horarioList.push({})" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</body>

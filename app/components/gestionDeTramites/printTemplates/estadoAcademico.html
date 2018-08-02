@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <script>
+        var generatePDF = function () {
+            kendo.drawing.drawDOM($("#form_container")).then(function (group) { kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf"); });
+        }
+    </script>
+    <br/>
+    <button class="btn btn-primary" style="margin-left: 123px;margin-top: 20px;" onclick="kendo.drawing.drawDOM($('#form_container')).then(function(group) {kendo.drawing.pdf.saveAs(group, 'Converted PDF.pdf');});">
+        <i class="fa fa-save"></i> Salvar como PDF</button>
+    <br/>
+    <div id="form_container" class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="invoice-title">
+                    <h2>Factura</h2>
+                    <h3 class="pull-right">Orden # {{data.NumeroOrden}}</h3>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <address>
+                            <strong>Nombre:</strong>
+                            <br>{{data.Nombre}}
+                            <br>
+                            <strong>Cargo:</strong>
+                            <br> {{data.Cargo}}
+                            <br>
+                            <strong>C. Costo:</strong>
+                            <br> {{data.Costo}}
+                            <br>
+                            <strong>Días:</strong>
+                            <br> {{data.CantDias}}
+                        </address>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <address>
+                            <strong>Legajo:</strong>
+                            <br> {{data.Legajo}}
+                            <br>
+                            <strong>CUIT:</strong>
+                            <br> {{data.CUILCUIT}}
+                            <br>
+                            <strong>Fecha ingreso:</strong>
+                            <br> {{data.FechaIngreso}}
+                            <br>
+                        </address>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 text-right">
+                        <address>
+                            <strong>Ficha:</strong>
+                        </address>
+                    </div>
+                    <div class="col-xs-6 text-right ficha-border">
+                        <address>
+                            <strong>HISTORICO {{data.NumeroDia}}.{{data.MesAbreviado}}.{{data.Ano}}</strong>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <strong></strong>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <strong>Detalle</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>v.o.</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Form</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            <strong>Haberes</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            <strong>Descuentos</strong>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                    <tr ng-repeat="detalle in data.DetalleList">
+                                        <td>{{detalle.Description}}</td>
+                                        <td class="text-center">{{detalle.VO}}</td>
+                                        <td class="text-center">{{detalle.Form}}</td>
+                                        <td class="text-right">{{detalle.Haberes}}</td>
+                                        <td class="text-right">{{detalle.Descuentos}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <h3 class="panel-title">
+                            <strong></strong>
+                        </h3>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <strong>Neto:</strong>
+                                    </div>
+                                    <div class="col-xs-4">Sin descuentos
+                                        <br> {{data.NetoSinDescuento}}
+                                    </div>
+                                    <div class="col-xs-4">A pagar
+                                        <br> {{data.NetoAPagar}}
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <strong>TOTALES:</strong>
+                                    </div>
+                                    <div class="col-xs-4">{{data.TotalesHaberes}}</div>
+                                    <div class="col-xs-4">{{data.TotalesDescuentos}}
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-centered">
+                <button class="btn btn-primary pull-right" ng-click="vm.cancel()" style="margin-right: 54px;margin-bottom: 19px;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

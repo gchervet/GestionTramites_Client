@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>{{vm.title}}</title>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Previsualización de datos</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-heading">{{vm.title}}: Previsualización de datos</div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <!--class="form-padding-15"-->
+                        <div class="row" ng-if="vm.IdTramite == 6">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-2 form-group">
+                                    <label>Legajo:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Legajo" ng-readonly="true">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Carrera:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Carrera" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Nro. trámite:</label>
+                                    <input type="text" class="form-control" style="padding: 6px" ng-model="vm.nroTramite" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Lugar retiro:</label>
+                                    <input type="text" class="form-control" style="padding: 6px" ng-model="vm.lugarRetiro" ng-readonly="true" ng-if="vm.lugarRetiro">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="vm.IdTramite == 1">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-2 form-group" ng-if="vm.IdTramite == 1">
+                                    <label>Express:</label>
+                                    <input type="text" class="form-control" style="padding: 6px" ng-model="vm.esExpress" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="vm.IdTramite != 6">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-2 form-group">
+                                    <label>Legajo:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Legajo" ng-readonly="true">
+                                </div>
+                                <div class="col-md-8 form-group">
+                                    <label>Carrera:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Carrera" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Modalidad:</label>
+                                    <input type="text" class="form-control" style="padding: 6px" ng-model="vm.modalidadString" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="vm.IdTramite != 6">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-4 form-group">
+                                    <label>Nombre:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Nombre" ng-readonly="true">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Apellido:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Apellido" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Documento:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.tipoDocumentoString" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <input type="text" class="form-control" style="margin-top:25px" ng-model="vm.personalData.Documento" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="vm.IdTramite != 6">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-8 form-group">
+                                    <label>Lugar de nacimiento:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.LugarNacimiento" ng-readonly="true">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Fecha de nacimiento:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.FechaNacimiento" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="vm.IdTramite != 6">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-3 form-group">
+                                    <label>Domicilio Calle:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.DirCalle" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Número:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.DirNumero" ng-readonly="true">
+                                </div>
+                                <div class="col-md-1 form-group">
+                                    <label>Piso:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.DirPiso" ng-readonly="true">
+                                </div>
+                                <div class="col-md-1 form-group">
+                                    <label>Depto:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.DirDepto" ng-readonly="true">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Localidad:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.Localidad" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>CP:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.CodigoPostal" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="vm.IdTramite != 6">
+                            <div class="col-md-12 col-centered">
+                                <div>
+                                    <div class="col-md-8">
+                                        <label>Teléfono movil:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Mail:</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-2 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.TelMovilCodPais" ng-readonly="true">
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.TelMovilCodArea" ng-readonly="true">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.TelMovilNumero" ng-readonly="true">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.Mail" ng-readonly="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="vm.IdTramite != 6">
+                            <div class="col-md-12 col-centered">
+                                <div>
+                                    <div class="col-md-8">
+                                        <label>Teléfono fijo:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label ng-if="vm.IdTramite == 1 || vm.IdTramite == 2 || vm.IdTramite == 4 || vm.IdTramite == 5 || vm.IdTramite == 8">Mail 2:</label>
+                                        <div ng-if="vm.IdTramite != 1 && vm.IdTramite != 2 && vm.IdTramite != 4 && vm.IdTramite != 5 && vm.IdTramite != 8" style="height:25px"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-2 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.TelFijoCodPais" ng-readonly="true">
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.TelFijoCodArea" ng-readonly="true">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.TelFijoNumero" ng-readonly="true">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.Mail2" ng-readonly="true" ng-if="vm.IdTramite == 1 || vm.IdTramite == 2 || vm.IdTramite == 4 || vm.IdTramite == 5 || vm.IdTramite == 8">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="vm.IdTramite != 6">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <label>Mes/Año de finalización de carrera UK:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.MesAnoFinalCarreraUK" maxlength="7" ng-readonly="true">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Año finalización Secundario:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.AnoFinalSecundario" maxlength="4" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="panel-heading" ng-if="vm.IdTramite == 1 || vm.IdTramite == 2 || vm.IdTramite == 4">Otro contacto (Opcional)</div>
+                <div class="panel-body" ng-if="vm.IdTramite == 1 || vm.IdTramite == 2 || vm.IdTramite == 4">
+                    <form name="academicoForm">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-4 form-group">
+                                    <label>Apellido y Nombre:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.ApellidoNombreOp" ng-readonly="true">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Tel:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.TelefonoOp" ng-readonly="true">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Mail:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.MailOp" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-12 form-group" style="margin-bottom:0px">
+                                    <button class="btn btn-primary pull-right" ng-click="vm.cancel()" style="margin-right: 5px">Salir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>

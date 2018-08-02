@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Reasignar tarea</title>
+</head>
+
+<body>
+    <div ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Reasignar tarea</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Seleccionar usuario a asignar:</div>
+                <div class="uk-user-reassign-list-container">
+                    <div class="uk-user-reassign-list">
+                        <div ng-repeat="x in records" ng-click="vm.checkUsuario(x.IdUsuarioAsignado, x.Nombre)" class="uk-user-reassign-item-container">
+                            <div class="uk-user-reassign-check">
+                                <input id="check_{{x.IdUsuarioAsignado}}" type="radio" name="optradio">
+                            </div>
+                            <div class="uk-user-reassign-item">
+                                <div class="nombre">
+                                    {{x.Nombre}}    
+                                </div>
+                                <div class="grupoAsignado">
+                                    {{x.GrupoAsignado}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-centered">
+            <div class="col-md-12" style="margin-bottom:16px">
+                <button class="btn btn-primary pull-right" ng-disabled="!vm.selectedUsuario" ng-click="vm.assign()">Asignar</button>
+                <button class="btn btn-primary pull-right" ng-click="vm.cancel()" style="margin-right: 5px">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</body>

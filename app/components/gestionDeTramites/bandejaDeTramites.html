@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Gestión de trámites</title>
+    <div ng-include ng-controller="headerController as header" src="'app/components/main/header.html'"></div>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <button type="submit" class="btn btn-primary" ng-click="vm.openPagarOnline()">Siguiente</button>
+
+        <div class="col-md-11 col-centered">
+            <h2>Nuevo trámite</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-heading"></div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <!--class="form-padding-15"-->
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-3 form-group">
+                                    <label>Legajo:</label>
+                                    <!--Autocomplete-->
+                                    <!--Legajo provisional-->
+                                    <input class="form-control" id="comboLegajo" ng-change="vm.cleanLegajoAndCarreraText()" ng-blur="vm.validateLegajo()" ng-change="vm.legajoInputChanged()"
+                                        ng-model="vm.tramiteAGenerar.legajoSearchText" />
+                                    <p class="alumno-name-text">{{vm.tramiteAGenerar.alumnoNameByLegajo}}</p>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Carrera:</label>
+                                    <input class="form-control" ng-disabled="true" ng-model="vm.tramiteAGenerar.carreraSelected" />
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Tipo de trámite:</label>
+                                    <select class="input-large form-control" ng-options="tramite.Descripcion for tramite in vm.tramiteList" ng-model="vm.tramiteAGenerar.tramiteSelected">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div permission="['Inscripciones_MatriculacionYArancelamiento']" class="col-md-3 form-group">
+                                    <label>Prioridad:</label>
+                                    <select class="input-large form-control" ng-if="vm.prioridadList" ng-options="prioridad.Descripcion for prioridad in vm.prioridadList"
+                                        ng-model="vm.tramiteAGenerar.prioridadSelected">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-offset-6 col-md-3 form-group">
+                                    <label>Lugar para retirar:</label>
+                                
+                                    <select class="input-large form-control" ng-if="vm.tramiteAGenerar.tramiteSelected.IdTramite == 6" ng-options="edificio.NomIns for edificio in vm.edificioConstanciaList"
+                                        ng-model="vm.selectedEdificio">
+                                        <option></option>
+                                    </select>
+                                
+                                    <select class="input-large form-control" ng-if="vm.tramiteAGenerar.tramiteSelected.IdTramite != 6 && vm.tramiteAGenerar.tramiteSelected.IdTramite != 1"
+                                        ng-options="edificio.NomIns for edificio in vm.edificioList" ng-model="vm.selectedEdificio">
+                                        <option></option>
+                                    </select>
+                                
+                                    <select ng-if="vm.tramiteAGenerar.tramiteSelected.IdTramite == 1" ng-disabled="true" class="input-large form-control">
+                                        <option value="" selected>Registros</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-offset-2 col-md-1 form-group">
+                                    <p>
+                                        <button type="submit" class="btn btn-primary" style="margin-top: 25px;" ng-disabled="!(vm.tramiteAGenerar.tramiteSelected && vm.tramiteAGenerar.alumnoSelected && vm.tramiteAGenerar.prioridadSelected) || (vm.tramiteAGenerar.tramiteSelected.IdTramite != 1 && !vm.selectedEdificio)"
+                                            ng-click="vm.openTramiteModal()">Siguiente</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-11 col-centered">
+            <h2>Bandeja de trámites Iniciados</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+
+            <div class="panel panel-info">
+                <div class="panel-heading"></div>
+                <div class="panel-body collapsable">
+                    <div class="row">
+                        <div class="col-md-12 col-centered">
+                            <div id="administracionGridIniciados">
+
+                                <table id="bandejaDeTramite_ResultTable_Iniciados" data-search="true" data-striped="true" data-filter-control="true" bs-table-control="bsTableControl">
+                                    <thead>
+                                        <tr>
+                                            <!--<th data-checkbox="false"></th>-->
+                                            <th data-field="NroTramite" data-visible="false" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nro Trámite</th>
+                                            <th data-field="IdInstanciaTramiteActivo" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nro Trámite</th>
+                                            <th data-field="IdentificadorInteresado" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Legajo</th>
+                                            <th data-field="DescripcionTramite" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Descripción trámite</th>
+                                            <th data-field="NombreTarea" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nombre de tarea</th>
+                                            <th data-field="Estado" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Estado</th>
+                                            <th data-field="FechaCreacion" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Fecha Solicitud</th>
+                                            <th data-field="FechaLimite" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Fecha Vencimiento</th>
+                                            <th data-field="Asignado" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Asignado</th>
+                                            <th data-field="Prioridad" data-formatter="prioridadFormatterIniciadas" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Prioridad</th>
+                                            <th data-field="Accion" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Accion</th>
+                                            <th data-field="Informacion" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Información</th>
+                                            <th data-field="Observaciones" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Observaciones</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-11 col-centered">
+            <h2>Bandeja de trámites</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+
+            <div class="panel panel-info">
+                <div class="panel-heading"></div>
+                <div class="panel-body collapsable">
+                    <div class="row">
+                        <div class="col-md-12 col-centered">
+                            <div id="administracionGrid">
+
+                                <table id="bandejaDeTramite_ResultTable" data-search="true" data-striped="true" data-filter-control="true" bs-table-control="bsTableControl">
+                                    <thead>
+                                        <tr>
+                                            <!--<th data-checkbox="false"></th>-->
+                                            <th data-field="NroTramite" data-visible="false" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nro Trámite</th>
+                                            <th data-field="IdInstanciaTramiteActivo" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nro Trámite</th>
+                                            <th data-field="IdentificadorInteresado" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Legajo</th>
+                                            <th data-field="DescripcionTramite" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Descripción trámite</th>
+                                            <th data-field="NombreTarea" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nombre de tarea</th>
+                                            <th data-field="Estado" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Estado</th>
+                                            <th data-field="FechaCreacion" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Fecha Solicitud</th>
+                                            <th data-field="FechaLimite" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Fecha Vencimiento</th>
+                                            <th data-field="Asignado" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Asignado</th>
+                                            <th data-field="Prioridad" data-formatter="prioridadFormatter" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Prioridad</th>
+                                            <th data-field="Accion" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Accion</th>
+                                            <th data-field="Informacion" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Información</th>
+                                            <th data-field="Observaciones" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Observaciones</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

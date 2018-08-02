@@ -1,0 +1,11 @@
+﻿<div class="modal-header" ng-class="Message.MessageType" style="text-align: left; margin-bottom:0px;">
+    <h2>{{Message.MessageTitle}}</h2>
+</div>
+<div class="modal-body" ng-init="mc.init()" style="text-align: left;">
+    <p  style="white-space:pre-wrap;">{{Message.Message}}</p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-sm btn-primary" ng-show="Message.MessageType != 'pregunta'" ng-click="ok()">Ok</button>
+    <button class="btn btn-sm btn-primary" ng-show="Message.MessageType == 'pregunta'" ng-click="ok()">{{Message.MessageYes}}</button>
+    <button class="btn btn-sm btn-warning" ng-show="Message.MessageType == 'pregunta'" ng-click="cancel()">{{Message.MessageNo}}</button>
+</div>

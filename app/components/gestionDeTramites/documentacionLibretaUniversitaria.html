@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>Documentación para Libreta Universitaria</title>
+    <div ng-include ng-controller="headerController as header" src="'app/components/main/header.html'"></div>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Documentación para Libreta Universitaria</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-heading">Datos del Alumno</div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <!--class="form-padding-15"-->
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-3 form-group">
+                                    <select style="margin-top:25px" class="form-control" ng-model="vm.selectedDocumento">
+                                        <option ng-repeat="item in vm.documentos" ng-value="item.id">{{item.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <input type="text" style="margin-top:25px" class="form-control" ng-model="vm.numeroDocumento">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Nombre y Apellido</label>
+                                    <input type="text" class="form-control" ng-model="vm.nombre">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Carrera</label>
+                                    <select class="form-control" ng-model="vm.selectedCarrera">
+                                        <option ng-repeat="item in vm.carreras" ng-value="item.id">{{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered" style="margin-bottom: 0px">
+                                <div class="col-md-3 form-group" style="margin-bottom: 0px;">
+                                    <b>Documentacion obligatoria</b>
+                                </div>
+                                <div class="col-md-offset-5 col-md-2 form-group" style="margin-bottom: 0px; text-align: center">
+                                    <b>Presentado</b>
+                                </div>
+                                <div class="col-md-2 form-group" style="margin-bottom: 0px; text-align: center">
+                                    <b>Verificado</b>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="margin-top: 10px; margin-bottom: 10px">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-3 form-group">
+                                    <p>Fotocopia de DNI:</p>
+                                </div>
+                                <div class="col-md-offset-5 col-md-2 form-group" style="text-align:center">
+                                    <input type="checkbox" ng-model="vm.chkPresDNI" ng-checked="vm.chkChecked()">
+                                </div>
+                                <div class="col-md-2 form-group" style="text-align:center">
+                                    <input type="checkbox" ng-model="vm.chkVeriDNI" ng-checked="vm.chkChecked()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-3 form-group">
+                                    <p>2 Fotos carnet 4 x 4:</p>
+                                </div>
+                                <div class="col-md-offset-5 col-md-2 form-group" style="text-align:center">
+                                    <input type="checkbox" ng-model="vm.chkPresFotos" ng-checked="vm.chkChecked()">
+                                </div>
+                                <div class="col-md-2 form-group" style="text-align:center">
+                                    <input type="checkbox" ng-model="vm.chkVeriFotos" ng-checked="vm.chkChecked()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-3 form-group">
+                                    <p>Título secundario:</p>
+                                </div>
+                                <div class="col-md-offset-5 col-md-2 form-group" style="text-align:center">
+                                    <input type="checkbox" ng-model="vm.chkPresTitulo" ng-checked="vm.chkChecked()">
+                                </div>
+                                <div class="col-md-2 form-group" style="text-align:center">
+                                    <input type="checkbox" ng-model="vm.chkVeriTitulo" ng-checked="vm.chkChecked()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-4 form-group">
+                                    <label>Retira libreta en:</label>
+                                    <select class="form-control" ng-model="vm.selectedColegio">
+                                        <option value="" selected disabled hidden>-Seleccionar-</option>
+                                        <option ng-repeat="item in vm.colegios" ng-value="item.id">{{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-12 form-group">
+                                    <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px" ng-click="vm.quit()">Salir</button>
+                                    <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px" ng-click="vm.saveChanges()">Guardar cambios</button>
+                                    <button type="submit" class="btn btn-primary pull-left" ng-click="vm.print()">Imprimir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

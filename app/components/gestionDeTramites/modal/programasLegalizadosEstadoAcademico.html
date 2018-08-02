@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+    <title>Programas legalizados</title>
+    <!-- <div ng-include ng-controller="headerController as header" src="'app/components/main/header.html'"></div> -->
+</head>
+<body>
+    <div ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Estado Académico</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+
+            <div class="panel panel-info">
+                    <div class="panel-heading">Programas legalizados: Estado Académico</div>
+                <div class="panel-body collapsable">
+                        <div class="row" style="padding-top: 10px">
+                                <div class="col-md-6 form-group">
+                                    <label>Carrera:</label>
+                                    <input type="text" class="form-control" ng-model="vm.estadoAcademicoData.Carrera" disabled>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Plan:</label>
+                                    <input type="text" class="form-control" ng-model="vm.estadoAcademicoData.Plan" disabled>
+                                </div>
+                            </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 col-centered">
+                            <div id="administracionGrid" style="height:486px; overflow-y: auto;">
+    
+                                <table id="estadoAcademico_ResultTable" bs-table-control="bsTableControl" data-row-style="rowStyle">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="Check" data-checkbox = "true"></th>
+                                            <th data-field="Materia" data-filter-control="input" data-filter-control-placeholder="Buscar">Materia</th>
+                                            <th data-field="Fecha" data-filter-control="input" data-filter-control-placeholder="Buscar">Fecha</th>
+                                            <th data-field="Nota" data-filter-control="input" data-filter-control-placeholder="Buscar">Nota</th>
+                                            <th data-field="Folio" data-filter-control="input" data-filter-control-placeholder="Buscar">Folio</th>
+                                            <th data-field="LibroActa" data-filter-control="input" data-filter-control-placeholder="Buscar" >Lib/Acta</th>
+                                            <th data-field="Recono" data-filter-control="input" data-formatter="reconoFormatter" data-filter-control-placeholder="Buscar">Recono</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-4 form-group">
+                            <label>Para presentar en el Exterior </label>
+                            <i class="fa fa-info-circle" style="cursor: pointer" title="Para los casos en que el alumno necesitara presentar la documentación en alguna institución extranjera, el trámite será legalizado por el Ministerio de Educación…"></i>
+                            <br>
+                            <input type="checkbox" ng-model="vm.chkForeign">
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label>País:</label>
+                            <select class="form-control" ng-change="documentChanged()" ng-model="vm.selectedCountry" ng-disabled="!vm.chkForeign">
+                                <option value="" selected disabled hidden>-Seleccionar país-</option>
+                                <option ng-repeat="item in vm.paises" ng-value="item.name">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label>Institución extranjera:</label>
+                            <input type="text" class="form-control" placeholder="-Ingresar institución extranjera-" ng-model="vm.foreignInstitution" ng-disabled="!vm.chkForeign" ng-keyup="vm.foreignKeyUp($event)">
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-12 form-group">
+                            <span style="color:red">Si detectas alguna irregularidad entre lo indicado en tu estado académico y tu libreta, podés realizar un pedido de revisión mediante el trámite de "Rectificación de Datos".</span>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-12 col-centered">
+                            <button class="btn btn-primary btn-finish pull-right" ng-disabled='vm.chkForeign && (vm.foreignInstitution==undefined || vm.foreignInstitution=="" || vm.selectedCountry==undefined)' ng-click="vm.next()">Siguiente</button>
+                            <button class="btn btn-primary pull-right" ng-click="vm.cancel()" style="margin-right: 5px">Cancelar</button>
+                            <button class="btn btn-primary pull-right" ng-click="vm.back()" style="margin-right: 5px">Anterior</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

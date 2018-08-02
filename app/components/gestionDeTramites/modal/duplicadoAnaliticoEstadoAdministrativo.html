@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>Duplicado de Analítico y/o Diplomas</title>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Estado Administrativo</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-heading">Duplicado de Analítico y/o Diplomas: Estado Administrativo/Financiero</div>
+                <div class="panel-body" style="padding-top: 0px">
+                        <form name="academicoForm">
+                            <!--class="form-padding-15"-->
+                            <div class="row" style="padding-top: 10px; background-color: #f5f5f5;">
+                                <div class="col-md-12 col-centered">
+                                    <div class="col-md-5 form-group" style="display:flex;">
+                                        <b style="display:block; width: 100px;">Saldo actual:</b>
+                                        <input type="text" class="form-control" ng-model="vm.saldoString" style="text-align: right; display:block; width:auto;" ng-readonly="true">
+                                    </div>
+                                    <div class="col-md-7 form-group">
+                                        <button type="submit" class="btn btn-primary pull-right" ng-click="vm.showCtaCte()">Ver Estado Cta. Cte. <i class="fa fa-info-circle" style="cursor: pointer" title="Se redireccionará a MiPortal, en el cual deberá ingresar en UK Cuentas Corrientes para ver su Estado Cta. Cte."></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="row" ng-repeat="arancel in vm.arancelList">
+                                    <div class="col-md-12 col-centered">
+                                        <div class="col-md-9">
+                                            <p>{{arancel.Descripcion}}</p>
+                                        </div>      
+                                        <div class="col-md-3" style="text-align: right">
+                                            <input type="checkbox" ng-model="arancel.Check" ng-checked="vm.checkChecked()">
+                                            <span>Seleccionar</span>
+                                        </div>                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="margin-top: 10px;">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-9 form-group">
+                                    <b>Importe total a pagar:</b>
+                                </div>
+                                <div class="col-md-3 form-group" style="text-align: right">
+                                    <strong>$ {{vm.total < 0 ? 0 : vm.total}}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-12 form-group">
+                                    <!-- <button type="submit" class="btn btn-primary pull-right" ng-disabled="!vm.someChecked" ng-if="vm.total > 0" ng-click="vm.confirmSave()">Confirmar y guardar</button> -->
+                                    <button type="submit" class="btn btn-primary btn-finish pull-right" ng-disabled="!vm.someChecked" ng-if="(vm.total > 0)" ng-click="vm.payContinue()" style="margin-right: 5px">Pagar online y finalizar</button>
+                                    <button type="submit" class="btn btn-primary btn-finish pull-right" ng-disabled="!vm.someChecked" ng-if="(vm.total <= 0)" ng-click="vm.confirmContinue()" style="margin-right: 5px">Confirmar y finalizar</button>
+                                    <button class="btn btn-primary pull-right" ng-click="vm.cancel()" style="margin-right: 5px">Cancelar</button>
+                                    <button class="btn btn-primary pull-right" ng-click="vm.back()" style="margin-right: 5px">Anterior</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

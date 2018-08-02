@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<head>
+    <title>Indicadores de permanencia</title>
+    <div ng-include ng-controller="headerController as header" src="'app/components/main/header.html'"></div>
+</head>
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Indicadores de permenencia</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="pill" href="!/IndicadoresDePermanencia#academicoTab">KPI Académico</a></li>
+                <li><a data-toggle="pill" href="!/IndicadoresDePermanencia#administracionTab">KPI Administración</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="academicoTab" class="tab-pane active">
+
+                    <br />
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Filtrar búsqueda</div>
+                        <div class="panel-body">
+                            <form name="academicoForm">
+                                <!--class="form-padding-15"-->
+                                <div class="row">
+                                    <div class="col-md-12 col-centered">
+                                        <div class="col-md-3 form-group">
+                                            <p>
+                                                <label>Ciclo:<span style="color: red; font-weight:400;" title="Campo requerido" ng-show="academicoForm.comboCiclo.$invalid"> (Campo requerido)</span></label><!--obligatorio-->
+                                                <input required
+                                                       type="number"
+                                                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                       maxlength="4"
+                                                       max="9999" min="1"
+                                                       id="inputCiclo"
+                                                       name="comboCiclo"
+                                                       class="input-large form-control"
+                                                       placeholder="Ingresar ciclo"
+                                                       ng-model="vm.aca_cicloSelected" />
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <p>
+                                                <label>Cuatrimestre:<span style="color: red; font-weight:400;" title="Campo requerido" ng-show="academicoForm.comboCuatrimestre.$invalid"> (Campo requerido)</span></label><!--obligatorio-->
+                                                <select required
+                                                        name="comboCuatrimestre"
+                                                        class="input-large form-control"
+                                                        ng-options="cuatrimestre for cuatrimestre in vm.cuatrimestreList"
+                                                        ng-model="vm.aca_cuatrimestreSelected"></select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <p>
+                                                <label>Sede:</label>
+                                                <select name="comboSede" class="input-large form-control" ng-options="sede.code as sede.name for sede in vm.sedeList" ng-model="vm.aca_sedeSelected"><option></option></select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>Carrera:</label>
+                                            <select name="comboPlan" class="input-large form-control" ng-options="plan.code as plan.name for plan in vm.planList" ng-model="vm.aca_planSelected"><option></option></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-centered">
+                                        <div class="col-md-3 form-group">
+                                            <label>Legajo:</label> <!--Autocomplete-->
+                                            <input class="form-control"
+                                                   id="aca_comboLegajo"
+                                                   ng-change="vm.legajoInputChanged()"
+                                                   ng-model="vm.aca_legajoSearchText" />
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control" ng-model="vm.aca_nombreSelected">
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>Apellido:</label>
+                                            <input type="text" class="form-control" ng-model="vm.aca_apellidoSelected">
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>DNI:</label>
+                                            <input type="text" class="form-control" ng-model="vm.aca_dniSelected">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-centered">
+                                        <div class="col-md-3 form-group">
+                                            <label>KPI:</label>
+                                            <select class="input-large form-control" ng-options="kpi for kpi in vm.kpiList" ng-model="vm.aca_kpiSelected"><option></option></select>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>Nivel de riesgo:</label>
+                                            <select class="input-large form-control" ng-disabled="!vm.aca_kpiSelected" ng-options="nivelDeRiesgo for nivelDeRiesgo in vm.nivelDeRiesgoList" ng-model="vm.aca_nivelDeRiesgoSelected"><option></option></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-centered">
+                                        <p><button type="submit" class="btn btn-primary" ng-disabled="academicoForm.comboCiclo.$invalid || academicoForm.comboCuatrimestre.$invalid" ng-click="vm.loadAcademicoGrid()">Buscar</button></p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Resultados</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12 col-centered">
+                                    <div id="administracionGrid">
+
+                                        <!--<table id="academicoTable"></table>-->
+                                        <table id="academicoTable"
+                                               data-detail-view="true"
+                                               data-toggle="table"
+                                               data-search="true"
+                                               data-filter-control="true"
+                                               data-pagination="true"
+                                               data-show-export="true"
+                                               data-click-to-select="true"
+                                               data-page-list="[5, 10, 25, 50, 100, ALL]"
+                                               data-page-size="10">
+                                            <thead>
+                                                <tr>
+                                                    <th data-field="Legajo" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Legajo</th>
+                                                    <th data-field="Nombre" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Nombre</th>
+                                                    <th data-field="Apellido" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Apellido</th>
+                                                    <th data-field="DNI" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">DNI</th>
+                                                    <th data-field="Carrera" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Carrera</th>
+                                                    <!--<th data-field="Ciclo" data-filter-control="input" data-filter-control-placeholder="Buscar">Ciclo</th>-->
+                                                    <!--<th data-field="Cuatrimestre" data-filter-control="input" data-filter-control-placeholder="Buscar">Cuatrimestre</th>-->
+                                                    <th data-field="Inasistencia" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Inasistencia</th>
+                                                    <th data-field="Examenes" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Parciales reprobados</th>
+                                                    <th data-field="FinalesReprobados" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Finales reprobados</th>
+                                                    <th data-field="Telefono" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Teléfono</th>
+                                                    <th data-field="CorreoElectronico" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Correo electrónico</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Gráficos</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!--<div class="row">
+                                        <div class="col-md-12">
+                                            <button class="ui-button-text" ng-show="vm.aca_inasistenciaChartShowing" ng-click="vm.exportCharts([{'id':'aca_gridChartContainer'},{'id':'aca_fullChartContainer'}], 'pdf', 'Gráficos de inasistencia')">Exportar gráficos de inasistencia</button>
+                                        </div>
+                                    </div>-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div id="aca_gridChartContainer"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="aca_fullChartContainer"></div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="row">
+                                        <div class="col-md-12">
+                                            <button class="ui-button-text" ng-show="vm.aca_parcialChartShowing" ng-click="vm.exportCharts([{'id':'aca_examenesReprobadosChartContainer'},{'id':'aca_fullExamenesReprobadosChartContainer'}], 'pdf', 'Gráficos de parciales reprobados')">Exportar gráficos de parciales reprobados</button>
+                                        </div>
+                                    </div>-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div id="aca_examenesReprobadosChartContainer"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="aca_fullExamenesReprobadosChartContainer"></div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="row">
+                                        <div class="col-md-12">
+                                            <button class="ui-button-text" ng-show="vm.aca_finalChartShowing" ng-click="vm.exportCharts([{'id':'aca_finalesReprobadosChartContainer'},{'id':'aca_fullFinalesReprobadosChartContainer'}], 'pdf', 'Gráficos de finales reprobados')">Exportar gráficos de finales reprobados</button>
+                                        </div>
+                                    </div>-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div id="aca_finalesReprobadosChartContainer"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="aca_fullFinalesReprobadosChartContainer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="administracionTab" class="tab-pane fade">
+                    <br />
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Filtrar búsqueda</div>
+                        <div class="panel-body">
+                            <form name="administracionForm">
+                                <div class="row">
+                                    <div class="col-md-12 col-centered">
+                                        <div class="col-md-3 form-group">
+                                            <p>
+                                                <label>Ciclo:<span style="color: red; font-weight:400;" title="Campo requerido" ng-show="administracionForm.comboCiclo.$invalid"> (Campo requerido)</span></label><!--obligatorio-->
+                                                <input required
+                                                       type="number"
+                                                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                       maxlength="4"
+                                                       max="9999" min="1"
+                                                       id="inputCiclo"
+                                                       name="comboCiclo"
+                                                       class="input-large form-control"
+                                                       placeholder="Ingresar ciclo"
+                                                       ng-model="vm.adm_cicloSelected" />
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <p>
+                                                <label>Cuatrimestre:<span style="color: red; font-weight:400;" title="Campo requerido" ng-show="administracionForm.comboCuatrimestre.$invalid"> (Campo requerido)</span></label><!--obligatorio-->
+                                                <select required
+                                                        name="comboCuatrimestre"
+                                                        class="input-large form-control"
+                                                        ng-options="cuatrimestre for cuatrimestre in vm.cuatrimestreList"
+                                                        ng-model="vm.adm_cuatrimestreSelected"></select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <p>
+                                                <label>Sede:</label>
+                                                <select name="comboSede" class="input-large form-control" ng-options="sede.code as sede.name for sede in vm.sedeList" ng-model="vm.adm_sedeSelected"><option></option></select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>Carrera:</label>
+                                            <select name="adm_comboPlan" class="input-large form-control" ng-options="plan.code as plan.name for plan in vm.planList" ng-model="vm.adm_planSelected"><option></option></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-centered">
+                                        <div class="col-md-3 form-group">
+                                            <label>Legajo:</label> <!--Autocomplete-->
+                                            <input class="form-control"
+                                                   id="adm_comboLegajo"
+                                                   ng-change="vm.legajoInputChanged()"
+                                                   ng-model="vm.adm_legajoSearchText" />
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control" ng-model="vm.adm_nombreSelected">
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>Apellido:</label>
+                                            <input type="text" class="form-control" ng-model="vm.adm_apellidoSelected">
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>DNI:</label>
+                                            <input type="text" class="form-control" ng-model="vm.adm_dniSelected">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-centered">
+                                        <div class="col-md-3 form-group">
+                                            <label>KPI:</label>
+                                            <select id="comboCiclo" class="input-large form-control" ng-options="kpi for kpi in vm.adm_kpiList" ng-model="vm.adm_kpiSelected"><option></option></select>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label>Nivel de riesgo:</label>
+                                            <select id="comboCuatrimestre" ng-disabled="!vm.adm_kpiSelected" class="input-large form-control" ng-options="nivelDeRiesgo for nivelDeRiesgo in vm.nivelDeRiesgoList" ng-model="vm.adm_nivelDeRiesgoSelected"><option></option></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p><button type="submit" class="btn btn-primary" ng-disabled="administracionForm.comboCiclo.$invalid || administracionForm.comboCuatrimestre.$invalid" ng-click="vm.loadAdministracionGrid()">Buscar</button></p>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Resultados</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12 col-centered">
+                                    <div id="administracionGrid">
+
+                                        <table id="administracionTable"
+                                               data-show-export="true"
+                                               data-toggle="table"
+                                               data-filter-control="true"
+                                               data-pagination="true"
+                                               data-click-to-select="true"
+                                               data-page-list="[5, 10, 25, 50, 100, ALL]"
+                                               data-page-size="10">
+                                            <thead>
+                                                <tr>
+                                                    <th data-field="Legajo" data-filter-control="input" data-filter-control-placeholder="Buscar">Legajo</th>
+                                                    <th data-field="Nombre" data-filter-control="input" data-filter-control-placeholder="Buscar">Nombre</th>
+                                                    <th data-field="Apellido" data-filter-control="input" data-filter-control-placeholder="Buscar">Apellido</th>
+                                                    <th data-field="DNI" data-filter-control="input" data-filter-control-placeholder="Buscar">DNI</th>
+                                                    <th data-field="Carrera" data-filter-control="input" data-filter-control-placeholder="Buscar">Carrera</th>
+                                                    <th data-field="ValorDeDeuda" data-filter-control="input" data-filter-control-placeholder="Buscar">Deuda</th>
+                                                    <th data-field="DeudaMonto" data-filter-control="input" data-filter-control-placeholder="Buscar">DeudaMonto</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Gráficos</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div id="adm_morososGridChartContainer"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="adm_morososFullChartContainer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>

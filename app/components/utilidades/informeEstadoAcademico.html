@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>Plan de Estudio | Porcentaje de Materias Aprobadas</title>
+    <div ng-include ng-controller="headerController as header" src="'app/components/main/header.html'"></div>
+    
+   <script type="text/javascript" src="../../shared/libs/base64.min.js"></script>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Informe Estado Académico</h2>
+        </div>
+        <div class="col-md-12 col-centered">
+
+            <div class="col-md-12">
+                <label>Legajo provisorio:</label>
+                <input type="text" class="form-control" ng-model="vm.legajoProvisorio" >
+            </div>
+            <div class="col-md-12">
+                    <button class="btn btn-primary pull-right" ng-disabled="!vm.legajoProvisorio" ng-click="vm.getInformePDF()">Buscar</button>
+            </div>
+
+        </div>
+    </div>
+</body>

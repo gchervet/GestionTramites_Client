@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h3 class="modal-title">Observaciones del trámite {{data.IdInstanciaTramiteActivo}}</h3>
+</div>
+<div class="modal-body">
+
+    <h1></h1>
+
+    <div class="modal-observaciones-list-container">
+        <div id="observacion_observacion.IdObservaciones" ng-repeat="observacion in data.ObservacionList" class="modal-observaciones-list-item">
+            <div class="observacion-info">
+                <div class="observacion-fecha">{{observacion.Fecha}}</div>
+                <div class="observacion-usuario">{{observacion.Username}}</div>
+            </div>
+            <div class="observacion-info-mail">
+                <div class="observacion-email">{{observacion.Email}}</div>
+            </div>
+            <div class="observacion-content">
+                <div class="observacion-text">{{observacion.Texto}}</div>
+            </div>
+        </div>
+    </div>
+    <input class="form-control" style="height: 100px;" placeholder="Escribir nueva observación." id="inputComentario" ng-model="inputComentario" ng-keydown="submitObservacion()"/>
+
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-danger" type="button" ng-click="cancel()">Cerrar</button>
+</div>

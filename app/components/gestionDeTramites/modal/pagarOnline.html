@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <h3 class="modal-title">Pagar online</h3>
+</div>
+<div class="modal-body" ng-init="vm.init()">
+
+    <div class="row">
+        <label class="col-xs-5">Importe:</label>
+        <div class="col-xs-7">
+            <span id="inputComentario" ><b>${{vm.importe}}</b></span>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-xs-5">Medio de pago:</label>
+        <div class="col-xs-7">
+            <select class="input-large form-control" ng-options="mediosDePago.Nombre for mediosDePago in vm.mediosDePagoList" ng-change="vm.mediosDePagoChange()" ng-model="vm.mediosDePagoSelected">
+            <option></option> 
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-xs-5">Total a pagar:</label>
+        <div class="col-xs-7">
+            <span id="inputComentario" ><b>${{vm.importeAPagar}}</b></span>
+        </div>
+    </div>
+    <br />
+    <div class="col-xs-12">
+        <hr>
+        <div class="paypertic-disclaimer"></div>
+        <hr>
+    </div>
+    <div class="row">
+        <label class="col-xs-5">Número de medio de pago:</label>
+        <div class="col-xs-7">
+            <input class=" form-control" id="inputMedioDePago" ng-disabled="!vm.ingresarNumeroDePago" ng-model="vm.inputMedioDePago"/>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-xs-5">E-mail:</label>
+        <div class="col-xs-7">
+            <input type="email" class="form-control" id="inputMail" ng-model="vm.inputMail" placeholder="nombre@ejemplo.com"/>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <div class="row">
+        <label class="col-xs-12"><p class="text-danger">* Todos los campos son obligatorios.</p></label>
+    </div>
+    <button class="btn btn-success" type="button" ng-disabled="!vm.validatePaymentButton()" ng-click="vm.pagarOnline()">Realizar pago</button>
+    <button class="btn btn-danger" type="button" ng-click="vm.cancel()">Cancelar</button>
+</div> 

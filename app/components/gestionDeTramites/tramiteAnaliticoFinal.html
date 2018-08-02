@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>Tramite Analítico Final</title>
+    <div ng-include ng-if="vm.showHeader" ng-controller="headerController as header" src="'app/components/main/header.html'"></div>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Trámite Analítico Final</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-heading">Estado Administrativo/Financiero</div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <!--class="form-padding-15"-->
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <label>Saldo:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.Saldo" ng-readonly="true">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <button type="submit" class="btn btn-primary" style="margin-top:25px" ng-click="vm.showCtaCte()">Ver Estado Cta. Cte.</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control" ng-model="vm.facturacion">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <p>Arancel Analítico Final:</p>
+                                </div>
+                                <div class="col-md-1 form-group" style="text-align: right">
+                                    <p>{{vm.arancelAnalitico}}</p>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <input type="checkbox" ng-model="vm.chkArancelAnalitico" ng-checked="vm.chkChecked()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <p>Arancel Certificado Título en Trámite:</p>
+                                </div>
+                                <div class="col-md-1 form-group" style="text-align: right">
+                                    <p>{{vm.arancelCertificado}}</p>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <input type="checkbox" ng-model="vm.chkArancelCertificado" ng-checked="vm.chkChecked()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <span>Arancel Analítico Final Express </span>
+                                    <i class="fa fa-info-circle" style="cursor: pointer" title="Cambiar esto por un tooltip útil"></i>
+                                </div>
+                                <div class="col-md-1 form-group" style="text-align: right">
+                                    <p>{{vm.analiticoExpress}}</p>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <input type="checkbox" ng-model="vm.chkAnaliticoExpress" ng-checked="vm.chkChecked()">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <b>Importe total a pagar:</b>
+                                </div>
+                                <div class="col-md-1 form-group" style="text-align: right">
+                                    <p>{{vm.total}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 col-md-offset-7 form-group">
+                                    <button type="submit" class="btn btn-primary pull-right" ng-if="vm.total > 0" ng-click="vm.confirmSave()">Confirmar y guardar</button>
+                                    <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px" ng-if="vm.total > 0" ng-click="vm.payContinue()">Pagar online y finalizar</button>
+                                    <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px" ng-if="vm.total == 0" ng-click="vm.confirmContinue()">Confirmar y finalizar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>Plan de Estudio | Porcentaje de Materias Aprobadas</title>
+    <div ng-include ng-controller="headerController as header" src="'app/components/main/header.html'"></div>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Plan de Estudio | Porcentaje de Materias Aprobadas</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-heading">Datos personales y de contacto</div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <!--class="form-padding-15"-->
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-2 form-group">
+                                    <label>Legajo:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.Legajo" ng-readonly="true">
+                                </div>
+                                <div class="col-md-8 form-group">
+                                    <label>Carrera:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.Carrera" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Modalidad:</label>
+                                    <select class="form-control" ng-model="vm.dummyData.Modalidad">
+                                        <option ng-repeat="item in vm.tipoModalidades" ng-value="item.id">{{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-8 form-group">
+                                    <label>Apellido y Nombre:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.Nombre">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <select class="form-control" style="margin-top:25px" ng-model="vm.dummyData.TipoDocumento">
+                                        <option ng-repeat="item in vm.tipoDocumentos" ng-value="item.id">{{item.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <input type="text" class="form-control" style="margin-top:25px" ng-model="vm.dummyData.Documento">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-8 form-group">
+                                    <label>Lugar de nacimiento:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.LugarNacimiento">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Fecha de nacimiento:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.FechaNacimiento">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-8 form-group">
+                                    <label>Domicilio:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.Domicilio">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Localidad:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.Localidad">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>CP:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.CodigoPostal">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <label>Teléfono:</label>
+                                    <input type="text" class="form-control" ng-model="vm.dummyData.Telefono">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                        <label>Mail:</label>
+                                        <input type="text" class="form-control" ng-model="vm.dummyData.Mail">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-heading">Seleccionar items del trámite</div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <!--class="form-padding-15"-->
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <label>Sistema de calificaciones</label>
+                                    <br>
+                                    <input type="checkbox" ng-model="vm.chkCalificaciones">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Porcentaje de materias aprobadas</label>
+                                    <br>
+                                    <input type="checkbox" ng-model="vm.chkPorcentaje">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <label>Plan de estudios</label>
+                                    <br>
+                                    <input type="checkbox" ng-model="vm.chkPlanEstudios">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Carga horaria</label>
+                                    <br>
+                                    <input type="checkbox" ng-model="vm.chkCargaHoraria">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-body" style="padding-bottom: 0px">
+                    <form name="academicoForm">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-3 form-group">
+                                    <span>Confirmo los datos ingresados</span><br>
+                                    <input type="checkbox" ng-model="vm.confirmed" ng-change="vm.checkConfirmed()">
+                                </div>
+                                <div class="col-md-3 col-md-offset-6 form-group">
+                                        <button class="btn btn-primary pull-right" ng-disabled="!vm.confirmed" ng-click="vm.next()">Siguiente</button>
+                                        <button class="btn btn-primary pull-right" ng-click="vm.cancel()" style="margin-right: 5px">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Analítico Final y Diploma</title>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Analítico Final y Diploma: Control Final Sobre Borrador</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-4 form-group" style="margin-bottom:0px">
+                                    <span>¿Realiza alguna corrección en borrador?</span>
+                                    <br>
+                                    <input type="checkbox" ng-model="vm.erroresBorrador">
+                                </div>
+                                <div class="col-md-6 col-md-offset-2 form-group" style="margin-bottom:0px">
+                                    <button class="btn btn-primary btn-finish pull-right" ng-click="vm.next()">Finalizar</button>
+                                    <button class="btn btn-primary pull-right" ng-click="vm.cancel()" style="margin-right: 5px">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

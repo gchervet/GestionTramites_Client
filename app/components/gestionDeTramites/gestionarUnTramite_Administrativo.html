@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>Gestión de trámites</title>
+    <div ng-include ng-controller="headerController as header" src="'app/components/main/header.html'"></div>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Gestión de trámites</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Trámite solicitado</div>
+                <div class="panel-body collapsable">
+                    <div class="row">
+                        <div class="col-md-12 col-centered">
+                            <div id="administracionGrid">
+
+                                <table id="gestionarUnTramite_ResultTable" bs-table-control="bsTableControl">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="IdInstanciaTramite" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Tramite solicitado</th>
+                                            <th data-field="Comienzo" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Fecha</th>
+                                            <th data-field="IdEstadoInstancia" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Estado</th>
+                                            <th data-field="Legajo" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Legajo</th>
+                                            <th data-field="Ver" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Ver</th>
+                                            <th data-field="Eliminar" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="Buscar">Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11 col-centered">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Nuevo trámite</div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <!--class="form-padding-15"-->
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-3 form-group">
+                                    <label>Legajo:</label>
+                                    <!--Autocomplete-->
+									<!--Legajo provisional-->
+                                    <input class="form-control" id="comboLegajo" ng-change="vm.cleanLegajoAndCarreraText()" ng-blur="vm.validateLegajo()" ng-change="vm.legajoInputChanged()" ng-model="vm.legajoSearchText" />
+                                    <p class="alumno-name-text">{{vm.alumnoNameByLegajo}}</p>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Carrera:</label>
+                                    <input class="form-control" ng-disabled="true" ng-model="vm.carreraSelected" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-3 form-group">
+                                    <label>Tipo de trámite:</label>
+                                    <select class="input-large form-control" ng-options="tramite.Descripcion for tramite in vm.tramiteList" ng-model="vm.tramiteSelected">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <p>
+                                    <button type="submit" class="btn btn-primary" ng-disabled="!(vm.tramiteSelected && vm.alumnoSelected)" ng-click="vm.openTramiteModal()">Siguiente</button>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

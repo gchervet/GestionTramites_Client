@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>Analítico Final y Diploma</title>
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Confirmación Datos Personales</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="panel panel-info">
+                <div class="panel-heading">Analítico Final y Diploma: Datos personales y de contacto</div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <!--class="form-padding-15"-->
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-2 form-group">
+                                    <label>Legajo:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Legajo" ng-readonly="true">
+                                </div>
+                                <div class="col-md-8 form-group">
+                                    <label>Carrera:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Carrera" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Modalidad:</label>
+                                    <!-- <select class="form-control" ng-change="documentChanged()" ng-model="vm.personalData.Modalidad" style="padding: 6px" ng-readonly="true">
+                                        <option ng-repeat="item in vm.tipoModalidades" ng-value="item.id">{{item.name}}</option>
+                                    </select> -->
+                                    <input type="text" class="form-control" style="padding: 6px" ng-model="vm.modalidadString" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-4 form-group">
+                                    <label>Nombre:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Nombre" ng-readonly="true">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Apellido:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Apellido" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <!-- <select class="form-control" style="margin-top:25px; padding: 6px;" ng-model="vm.personalData.TipoDocumento" ng-readonly="true">
+                                        <option ng-repeat="item in vm.tipoDocumentos" ng-value="item.id">{{item.name}}</option>
+                                    </select> -->
+                                    <label>Documento:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.tipoDocumentoString" ng-readonly="true">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <input type="text" class="form-control" style="margin-top:25px" ng-model="vm.personalData.Documento" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-8 form-group">
+                                    <label>Lugar de nacimiento:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.LugarNacimiento" ng-readonly="true">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Fecha de nacimiento:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.FechaNacimiento" ng-readonly="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <!-- <div class="col-md-8 form-group">
+                                    <label>Domicilio:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.Domicilio">
+                                </div> -->
+                                <div class="col-md-3 form-group">
+                                    <label>Domicilio Calle:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.DirCalle" ng-change="vm.changeValues()">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Número:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.DirNumero" ng-change="vm.changeValues()">
+                                </div>
+                                <div class="col-md-1 form-group">
+                                    <label>Piso:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.DirPiso" ng-change="vm.changeValues()">
+                                </div>
+                                <div class="col-md-1 form-group">
+                                    <label>Depto:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.DirDepto" ng-change="vm.changeValues()">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Localidad:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.Localidad" ng-change="vm.changeValues()">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>CP:</label>
+                                    <input type="text" class="form-control" style="padding: 6px;" ng-model="vm.personalData.CodigoPostal" ng-change="vm.changeValues()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div>
+                                    <div class="col-md-8">
+                                        <label>Teléfono movil*:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Mail*:</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-2 form-group">
+                                        <input placeholder="Cod. País" type="text" class="form-control" ng-model="vm.personalData.TelMovilCodPais" ng-change="vm.changeValues()">
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <input placeholder="Cod. Area" type="text" class="form-control" ng-model="vm.personalData.TelMovilCodArea" ng-change="vm.changeValues()">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input placeholder="Número" type="text" class="form-control" ng-model="vm.personalData.TelMovilNumero" ng-change="vm.changeValues()">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.Mail" ng-change="vm.changeValues()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div>
+                                    <div class="col-md-8">
+                                        <label>Teléfono fijo:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Mail 2:</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-2 form-group">
+                                        <input placeholder="Cod. País" type="text" class="form-control" ng-model="vm.personalData.TelFijoCodPais" ng-change="vm.changeValues()">
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <input placeholder="Cod. Area" type="text" class="form-control" ng-model="vm.personalData.TelFijoCodArea" ng-change="vm.changeValues()">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input placeholder="Número" type="text" class="form-control" ng-model="vm.personalData.TelFijoNumero" ng-change="vm.changeValues()">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="text" class="form-control" ng-model="vm.personalData.Mail2" ng-change="vm.changeValues()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-6 form-group">
+                                    <label>Mes/Año de finalización de carrera UK:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.MesAnoFinalCarreraUK" maxlength="7" ng-change="vm.changeValues()">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Año finalización Secundario:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.AnoFinalSecundario" maxlength="4" ng-change="vm.changeValues()">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="panel-heading">Otro contacto (Opcional)</div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-4 form-group">
+                                    <label>Apellido y Nombre:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.ApellidoNombreOp" ng-change="vm.changeValues()">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Tel:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.TelefonoOp" ng-change="vm.changeValues()">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Mail:</label>
+                                    <input type="text" class="form-control" ng-model="vm.personalData.MailOp" ng-change="vm.changeValues()">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="panel-heading">Documentación adjunta</div>
+                <div class="panel-body">
+                    <form name="academicoForm">
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-12 form-group">
+                                    <label>Foto del DNI (frente)</label>
+                                    <i class="fa fa-arrow-circle-up uk-upload-photo" title="Subir archivo" ng-click="vm.uploadDniFrente()"></i>
+                                    <input id="file-dni-front" type="file" accept="" style="display:none;" />
+                                    <i class="fa fa-paperclip uk-upload-photo" ng-attr-title="{{vm.attachData.dniFront.name}}" ng-if="vm.attachData.dniFront"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-12 form-group">
+                                    <label>Foto del DNI (reverso)</label>
+                                    <i class="fa fa-arrow-circle-up uk-upload-photo" title="Subir archivo" ng-click="vm.uploadDniReverso()"></i>
+                                    <input id="file-dni-back" type="file" accept="" style="display:none;" />
+                                    <i class="fa fa-paperclip uk-upload-photo" ng-attr-title="{{vm.attachData.dniBack.name}}" ng-if="vm.attachData.dniBack"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-12 form-group">
+                                    <label>Foto título secundario o grado</label>
+                                    <i class="fa fa-arrow-circle-up uk-upload-photo" title="Subir archivo" ng-click="vm.uploadTitulo()"></i>
+                                    <input id="file-title" type="file" accept="" style="display:none;" />
+                                    <i class="fa fa-paperclip uk-upload-photo" ng-attr-title="{{vm.attachData.title.name}}" ng-if="vm.attachData.title"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-12 form-group">
+                                    <label>Foto de Convalidación (sólo para alumnos que cursaron en el exterior)</label>
+                                    <i class="fa fa-arrow-circle-up uk-upload-photo" title="Subir archivo" ng-click="vm.uploadConvalidacion()"></i>
+                                    <input id="file-accreditation" type="file" accept="" style="display:none;" />
+                                    <i class="fa fa-paperclip uk-upload-photo" ng-attr-title="{{vm.attachData.accreditation.name}}" ng-if="vm.attachData.accreditation"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-4 form-group" style="margin-bottom:0px;">
+                                    <span>Confirmo los datos ingresados</span>
+                                    <br>
+                                    <input type="checkbox" ng-model="vm.confirmed" ng-change="vm.checkConfirmed()">
+                                </div>
+                                <div class="col-md-6 col-md-offset-2 form-group" style="margin-bottom:0px">
+                                    <button class="btn btn-primary btn-finish pull-right" ng-disabled="!vm.confirmed" ng-click="vm.next()">Siguiente</button>
+                                    <button class="btn btn-primary pull-right" ng-click="vm.cancel()" style="margin-right: 5px">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-centered">
+                                <div class="col-md-4 form-group" style="margin-bottom:0px">
+                                    <span style="color:red">*Datos obligatorios</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
