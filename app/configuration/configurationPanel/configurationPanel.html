@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Tramite Analítico Final</title>
+    <div ng-include ng-controller="adminHeaderController as header" src="'app/components/main/adminHeader.html'"></div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div data-ng-init="vm.init()" class="row">
+        <div class="col-md-11 col-centered">
+            <h2>Panel administrativo</h2>
+        </div>
+        <div class="col-md-11 col-centered">
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <i class="fas fa-users"></i> Usuarios
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <!-- botones de usuarios -->
+                            <div class="col-md-4">
+                                <div class="confpanel-user-button">
+                                    <i ng-disabled="!vm.selectedUser" class="fas fa-user-plus"></i>
+                                    <span ng-disabled="!vm.selectedUser" >Nuevo usuario</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="confpanel-user-button">
+                                    <i ng-disabled="!vm.selectedUser" class="fas fa-user-times"></i>
+                                    <span ng-disabled="!vm.selectedUser" >Eliminar usuario</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="confpanel-user-button">
+                                    <i ng-disabled="!vm.selectedUser" class="fas fa-user-edit"></i>
+                                    <span ng-disabled="!vm.selectedUser" >Editar usuario</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Lista de usuarios -->
+                                <div class="confpanel-user-list-container">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <i class="fas fa-tasks"></i> Roles
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <i class="fas fa-project-diagram"></i> Permisos
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

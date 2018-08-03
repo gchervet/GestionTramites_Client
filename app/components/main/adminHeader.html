@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<div data-ng-init="header.init()" xmlns="http://www.w3.org/1999/xhtml">
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#!/Administration">
+                            <i class="fa fa-home" aria-hidden="true"></i> Panel administrativo
+                        </a>
+                    </li>
+
+                    <li ng-repeat="menuGroup in header.menuGroupList track by menuGroup.Id" class="dropdown">
+                        <a id="MenuGroup_{{menuGroup.Id}}" class="dropdown-toggle cursor-pointer" data-toggle="dropdown" ng-show="menuGroup.Show">{{menuGroup.Detail}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="menu in menuGroup.MenuList track by menu.Id"
+                                permission="{{menu.PermissionString}}"
+                                permissiontype="NonExcluding">
+                                <a href="#!/{{menu.Name}}" class="dropdown-menu-custom">{{menu.Detail}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#!/user">
+                            Bienvenido, {{header.userFullName}} <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li ng-click="header.logout()">
+                        <a>
+                            <i class="fa fa-window-close" aria-hidden="true"></i> Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

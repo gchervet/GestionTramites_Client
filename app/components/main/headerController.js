@@ -5,17 +5,6 @@
         headerController.userFullName = '';
         headerController.userPermission = '';
 
-        headerController.tramites =
-            [{ id: 0, name: 'Programas Legalizados' },
-            { id: 1, name: 'Duplicado Analítico' },
-            { id: 2, name: 'Título en Trámite' },
-            { id: 3, name: 'Analitico Final' },
-            { id: 4, name: 'Analitico Parcial' },
-            { id: 5, name: 'Libreta Universitaria' },
-            { id: 6, name: 'Rectificación de Datos' },
-            { id: 7, name: 'Plan de Estudio' },
-            { id: 8, name: 'Porcentaje de materias' }];
-
         headerController.selectedTramite = 0;
         headerController.menuGroupList = [];
 

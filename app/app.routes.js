@@ -11,6 +11,10 @@ app.config(['$qProvider', '$routeProvider', '$stateProvider', '$urlRouterProvide
             templateUrl: server_prefix + 'app/components/login/login.html',
             controller: 'loginController as vm'
         })
+        .when('/Administration', {
+            templateUrl: server_prefix + 'app/configuration/configurationPanel/configurationPanel.html',
+            controller: 'configurationPanelController as vm'
+        })
         .when('/home', {
             templateUrl: server_prefix + 'app/components/home/home.html',
             controller: 'homeController as home',

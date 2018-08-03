@@ -43,7 +43,6 @@
             /* Limpiar la sesión desde la base */
             var process_expireToken_request = function () {
 
-                debugger;
                 utilityService.callSecureHttp({
                     method: "POST",
                     url: "api/ExpireToken/",

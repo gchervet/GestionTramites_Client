@@ -172,3 +172,35 @@ html{
 .modal-observaciones-list-item .observacion-content .observacion-text{
     font-size: 15px;
 }
+
+.confpanel-user-list-container{
+    height: 400px;
+    background-color: #e7f7ff;
+    width: 100%;
+    border-radius: 7px;
+}
+.confpanel-user-button{
+    color: #31708f;
+    height: 43px;
+}
+.confpanel-user-button > i{
+    background-color: #31708f;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 8px;
+    color: white;
+}
+.confpanel-user-button > i:disabled{
+    background-color: #c0c0c0;
+    cursor: default;
+    color: rgb(80, 80, 80);
+}
+.confpanel-user-button > span{
+    cursor: pointer;
+}
+.confpanel-user-button > span:disabled{
+    cursor: default;
+    color: rgb(80, 80, 80);
+}

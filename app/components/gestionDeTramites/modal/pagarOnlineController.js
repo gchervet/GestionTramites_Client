@@ -147,7 +147,6 @@ angular.module('app')
                 $http.post('http://servicios.kennedy.edu.ar/CtaCteServices_TEST/Services/CtaPagoOnlineService.svc/pagaronline', data, {
                     headers: { 'Content-Type': "application/json" }
                 }).then(response => {
-                    debugger;
                     if (response.data) {
                         if(response.data.toString().replace('""','')){
                             window.open(response.data,'winname','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no');

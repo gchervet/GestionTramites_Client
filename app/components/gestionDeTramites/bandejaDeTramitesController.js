@@ -562,7 +562,6 @@ angular.module('app')
 
         socket.on('TraEstadoInstanciaObservaciones.Notify', function (message) {
             if (message.IdUsuarioAsignado){
-                debugger;
                 if(message.IdUsuarioAsignado == $rootScope.user.IdUsuarioAsignado){
                     notificationService.showEntityNotification(message);
                 }
@@ -916,7 +915,6 @@ angular.module('app')
                             if (response.data) {
                                 $('#comboLegajo_' + nroTramite).val('');
 
-                                debugger;
                                 var modalInstance = $uibModal.open({
                                     animation: true,
                                     templateUrl: 'app/components/gestionDeTramites/modal/estadoInstanciaObservaciones.html',

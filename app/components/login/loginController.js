@@ -104,7 +104,7 @@
 
             var loginCallback = function (response) {
                 if (response) {
-
+                    
                     loginController.failedLoginCode = response.data.FailedLoginCode;
 
                     if (response.data.FailedLoginCode == 1) {
@@ -134,7 +134,20 @@
                         $cookies.put('token', $rootScope.token, { expires: now });
                         $cookies.put('user', $sessionStorage.user.name, { expires: now });
 
-                        $location.path("/home");
+                        if(response.data.DefaultPage){
+                            try
+                            {
+                                $location.path("/" + response.data.DefaultPage);
+                            }
+                            catch 
+                            {
+                                $location.path("/home");
+                            }
+                        }
+                        else{
+                            $location.path("/home");
+                        }
+                        
                     }
                     else {
                         $sessionStorage.user = null;
